@@ -1,6 +1,7 @@
 package com.example.thecatapp.ui.viewmodel
 
 import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import com.example.thecatapp.data.UserCredentialsChecker.MockUserCredentialsChecker
 import com.example.thecatapp.data.UserCredentialsChecker.UserCredentialsChecker
 import com.example.thecatapp.model.UserCredentials
@@ -8,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class MainViewModel {
+class MainViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<Boolean>(false)
     val uiState: StateFlow<Boolean> = _uiState.asStateFlow()
 

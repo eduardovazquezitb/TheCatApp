@@ -12,11 +12,15 @@ fun CardList(
     catList : List<CatInfo>,
     modifier: Modifier = Modifier
 ) {
+
+
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ){
         this.items(items = catList, itemContent = {item ->
-            CatCard(item)
+            CatCard(
+                item
+            )
         })
     }
 }

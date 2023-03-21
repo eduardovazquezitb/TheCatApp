@@ -1,5 +1,6 @@
 package com.example.thecatapp.ui.viewmodel
 
+import androidx.lifecycle.ViewModel
 import com.example.thecatapp.data.CatDataSource.CatDataSource
 import com.example.thecatapp.data.CatDataSource.MockCatDataSource
 import com.example.thecatapp.model.CatInfo
@@ -14,7 +15,7 @@ data class ListUiState(
     val isError: Boolean
 )
 
-class ListViewModel {
+class ListViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<ListUiState>(
         ListUiState(
             catList = listOf(),

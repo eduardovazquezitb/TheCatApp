@@ -11,4 +11,6 @@
     <string name="no_account">I don\'t have an account</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="cat_list">Cute Cats!</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="detail_title">Cat Detail</string>
 </resources>
