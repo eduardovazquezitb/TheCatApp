@@ -1,19 +1,16 @@
 package com.example.thecatapp.model
 
-data class CatInfo(
-    val breeds: List<Breed>,
-    val height: Int,
-    val id: String,
-    val url: String,
-    val width: Int
-)
+import kotlinx.serialization.Serializable
 
-data class Breed(
+@Serializable
+data class BreedDto(
     val adaptability: Int,
     val affection_level: Int,
-    val alt_names: String,
+    val alt_names: String? = null,
+    val bidability: Int? = null,
     val cfa_url: String? = null,
     val child_friendly: Int,
+    val cat_friendly: Int? = null,
     val country_code: String,
     val country_codes: String,
     val description: String,
@@ -25,15 +22,16 @@ data class Breed(
     val health_issues: Int,
     val hypoallergenic: Int,
     val id: String,
+    val image: ImageDto? = null,
     val indoor: Int,
     val intelligence: Int,
-    val lap: Int,
+    val lap: Int? = null,
     val life_span: String,
     val name: String,
     val natural: Int,
     val origin: String,
     val rare: Int,
-    val reference_image_id: String,
+    val reference_image_id: String? = null,
     val rex: Int,
     val shedding_level: Int,
     val short_legs: Int,
@@ -44,11 +42,20 @@ data class Breed(
     val vcahospitals_url: String? = null,
     val vetstreet_url: String? = null,
     val vocalisation: Int,
-    val weight: Weight,
-    val wikipedia_url: String
+    val weight: WeightDto,
+    val wikipedia_url: String? = null
 )
 
-data class Weight(
+@Serializable
+data class WeightDto(
     val imperial: String,
     val metric: String
+)
+
+@Serializable
+data class ImageDto(
+    val height: Int,
+    val id: String,
+    val url: String,
+    val width: Int
 )

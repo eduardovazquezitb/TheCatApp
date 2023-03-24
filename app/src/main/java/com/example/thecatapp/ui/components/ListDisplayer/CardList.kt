@@ -5,15 +5,13 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.example.thecatapp.model.CatInfo
+import com.example.thecatapp.model.BreedDto
 
 @Composable
 fun CardList(
-    catList : List<CatInfo>,
+    catList : List<BreedDto>,
     modifier: Modifier = Modifier
 ) {
-
-
     LazyColumn(
         modifier = modifier.fillMaxSize()
     ){

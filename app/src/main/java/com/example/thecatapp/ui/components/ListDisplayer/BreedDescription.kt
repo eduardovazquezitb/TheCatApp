@@ -10,16 +10,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.thecatapp.data.CatDataSource.MockCatDataSource
-import com.example.thecatapp.model.Breed
-import com.example.thecatapp.ui.theme.TheCatAppTheme
+import com.example.thecatapp.model.BreedDto
 
 @Composable
 fun BreedDescription(
-    breed: Breed,
+    breed: BreedDto,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -43,13 +40,5 @@ fun BreedDescription(
             overflow = TextOverflow.Ellipsis,
             maxLines = 4
         )
-    }
-}
-
-@Preview
-@Composable
-fun BreedDescriptionPreview(){
-    TheCatAppTheme() {
-        BreedDescription(breed = MockCatDataSource().getCat("33v")!!.breeds[0])
     }
 }

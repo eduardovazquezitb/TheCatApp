@@ -12,18 +12,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.thecatapp.data.CatDataSource.MockCatDataSource
-import com.example.thecatapp.model.CatInfo
+import com.example.thecatapp.model.BreedDto
 import com.example.thecatapp.ui.navigation.ListNavigator
-import com.example.thecatapp.ui.theme.TheCatAppTheme
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun CatCard (
-    catInfo: CatInfo,
+    breed: BreedDto,
     modifier: Modifier = Modifier
 ) {
     val navigator = ListNavigator()
@@ -31,13 +28,14 @@ fun CatCard (
 
     Card(
         elevation = 8.dp,
-        shape = RoundedCornerShape(8.dp),
+        shape = RoundedCornerShape(24.dp),
         backgroundColor = MaterialTheme.colors.secondaryVariant,
+        contentColor = MaterialTheme.colors.onSecondary,
         modifier = modifier
             .padding(8.dp)
             .fillMaxWidth()
             .size(128.dp)
-            .clickable { navigator.goToDetail(activity, catInfo.id) }
+            .clickable { navigator.goToDetail(activity, breed) }
     ) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -45,29 +43,32 @@ fun CatCard (
                 .fillMaxWidth()
         ){
             Spacer(modifier=modifier.padding(start=8.dp))
-            GlideImage( // https://github.com/skydoves/landscapist
-                imageModel = { catInfo.url },
-                imageOptions = ImageOptions(
-                    contentScale = ContentScale.Crop
-                ),
-                modifier = modifier
+            if(breed.image != null){
+                GlideImage( // https://github.com/skydoves/landscapist
+                    imageModel = {
+                        breed.image.url
+                    },
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.Crop
+                    ),
+                    modifier = modifier
+                        .size(110.dp)
+                        .clip(RoundedCornerShape(20.dp))
+                )
+            }
+            else{
+                Spacer(
+                    modifier =modifier
                     .size(110.dp)
                     .clip(RoundedCornerShape(20.dp))
-            )
-            Spacer(modifier = modifier.padding(start=8.dp))
-            if(catInfo.breeds.size > 0)
-                BreedDescription(
-                    breed = catInfo.breeds[0],
-                    modifier = modifier
                 )
-        }
-    }
-}
+            }
 
-@Preview
-@Composable
-fun CatCardPreview(){
-    TheCatAppTheme() {
-        CatCard(catInfo = MockCatDataSource().getCat("33v")!!)
+            Spacer(modifier = modifier.padding(start=8.dp))
+            BreedDescription(
+                breed,
+                modifier
+            )
+        }
     }
 }

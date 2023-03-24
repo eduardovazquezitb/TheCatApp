@@ -1,8 +1,10 @@
 package com.example.thecatapp.data.CatDataSource
 
-import com.example.thecatapp.model.CatInfo
+import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.model.CatInfoDto
 
 interface CatDataSource {
-    fun getCats() : List<CatInfo>
-    fun getCat(id: String) : CatInfo?
+    suspend fun getCats(number: Int) : List<CatInfoDto>
+    suspend fun getCat(id: String) : CatInfoDto?
+    suspend fun getBreeds() : List<BreedDto>
 }

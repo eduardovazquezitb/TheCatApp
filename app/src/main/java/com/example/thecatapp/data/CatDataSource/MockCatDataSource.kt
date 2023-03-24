@@ -1,13 +1,14 @@
 package com.example.thecatapp.data.CatDataSource
 
-import com.example.thecatapp.model.Breed
-import com.example.thecatapp.model.CatInfo
-import com.example.thecatapp.model.Weight
+import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.model.WeightDto
 
+@Suppress("unused")
 class MockCatDataSource : CatDataSource {
-    private val _breed : Breed =
-        Breed(
-            weight = Weight(imperial="7 - 11",metric="3 - 5"),
+    private val _breed : BreedDto =
+        BreedDto(
+            weight = WeightDto(imperial="7 - 11",metric="3 - 5"),
             id="nebe",
             name="Nebelung",
             temperament="Gentle, Quiet, Shy, Playful",
@@ -43,28 +44,32 @@ class MockCatDataSource : CatDataSource {
             reference_image_id="OGTWqNNOt"
         )
 
-    private val _catList : List<CatInfo> = listOf(
-        CatInfo(breeds= listOf(_breed), id="33v",url="https://cdn2.thecatapi.com/images/33v.gif",width=200,height=234),
-        CatInfo(breeds= listOf(_breed),id="3da",url="https://cdn2.thecatapi.com/images/3da.jpg",width=720,height=533),
-        CatInfo(breeds= listOf(_breed),id="6v5",url="https://cdn2.thecatapi.com/images/6v5.jpg",width=1024,height=600),
-        CatInfo(breeds= listOf(_breed),id="add",url="https://cdn2.thecatapi.com/images/add.jpg",width=640, height=426),
-        CatInfo(breeds= listOf(_breed),id="bqr",url="https://cdn2.thecatapi.com/images/bqr.jpg",width=800, height=533),
-        CatInfo(breeds= listOf(_breed),id="ces",url="https://cdn2.thecatapi.com/images/ces.jpg",width=667, height = 1000),
-        CatInfo(breeds= listOf(_breed),id="dlo",url="https://cdn2.thecatapi.com/images/dlo.jpg",width=640, height = 426),
-        CatInfo(breeds= listOf(_breed),id="ef5",url="https://cdn2.thecatapi.com/images/ef5.jpg",width=500, height=281),
-        CatInfo(breeds= listOf(_breed),id="y61B6bFCh",url="https://cdn2.thecatapi.com/images/y61B6bFCh.jpg", width = 898, height = 900),
-        CatInfo(breeds= listOf(_breed),id="ohy1YBZtD",url="https://cdn2.thecatapi.com/images/ohy1YBZtD.png", width = 1920, height = 1080)
+    private val _catList : List<CatInfoDto> = listOf(
+        CatInfoDto(breeds= listOf(_breed), id="33v",url="https://cdn2.thecatapi.com/images/33v.gif",width=200,height=234),
+        CatInfoDto(breeds= listOf(_breed),id="3da",url="https://cdn2.thecatapi.com/images/3da.jpg",width=720,height=533),
+        CatInfoDto(breeds= listOf(_breed),id="6v5",url="https://cdn2.thecatapi.com/images/6v5.jpg",width=1024,height=600),
+        CatInfoDto(breeds= listOf(_breed),id="add",url="https://cdn2.thecatapi.com/images/add.jpg",width=640, height=426),
+        CatInfoDto(breeds= listOf(_breed),id="bqr",url="https://cdn2.thecatapi.com/images/bqr.jpg",width=800, height=533),
+        CatInfoDto(breeds= listOf(_breed),id="ces",url="https://cdn2.thecatapi.com/images/ces.jpg",width=667, height = 1000),
+        CatInfoDto(breeds= listOf(_breed),id="dlo",url="https://cdn2.thecatapi.com/images/dlo.jpg",width=640, height = 426),
+        CatInfoDto(breeds= listOf(_breed),id="ef5",url="https://cdn2.thecatapi.com/images/ef5.jpg",width=500, height=281),
+        CatInfoDto(breeds= listOf(_breed),id="y61B6bFCh",url="https://cdn2.thecatapi.com/images/y61B6bFCh.jpg", width = 898, height = 900),
+        CatInfoDto(breeds= listOf(_breed),id="ohy1YBZtD",url="https://cdn2.thecatapi.com/images/ohy1YBZtD.png", width = 1920, height = 1080)
     )
 
-    override fun getCats(): List<CatInfo> {
-        return _catList
+    override suspend fun getCats(number: Int): List<CatInfoDto> {
+        return _catList.filterIndexed { index, _ -> index < number }
     }
 
-    override fun getCat(id: String): CatInfo? {
+    override suspend fun getCat(id: String): CatInfoDto? {
         for(i in 0.._catList.size-1){
             if(_catList[i].id == id)
                 return _catList[i]
         }
         return null
+    }
+
+    override suspend fun getBreeds(): List<BreedDto> {
+        return listOf(_breed)
     }
 }
