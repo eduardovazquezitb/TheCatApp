@@ -13,7 +13,11 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 sealed interface ListUiState {
-    data class Success(val catList: List<BreedDto>) : ListUiState
+    data class Success(
+        val catList: List<BreedDto>,
+        val country: String?,
+        val isFilterExpanded: Boolean
+    ) : ListUiState
     object IsLoading : ListUiState
     object IsError : ListUiState
 }
@@ -26,13 +30,28 @@ class ListViewModel : ViewModel() {
 
     private val _dataSource : CatDataSource = ApiCatDataSource()
 
+    var listOfCountries : List<String?> = listOf(null)
+
     fun getCatCards(){
         _uiState.value = ListUiState.IsLoading
         viewModelScope.launch {
             try{
                 val result = _dataSource.getBreeds()
+                listOfCountries = concatenate(
+                    listOf(null),
+                    result
+                        .map { it.country_code }
+                        .toSet()
+                        .toList()
+                        .sorted()
+                )
+
                 _uiState.update {
-                    ListUiState.Success(result.sortedBy { it.name })
+                    ListUiState.Success(
+                        catList = result.sortedBy { it.name },
+                        country = null,
+                        isFilterExpanded = false
+                    )
                 }
             } catch (e : Exception) {
                 Log.i("ERROR", e.toString())
@@ -41,5 +60,29 @@ class ListViewModel : ViewModel() {
                 }
             }
         }
+    }
+
+    fun setCountry(chosenCountry: String?){
+        if(_uiState.value is ListUiState.Success){
+            _uiState.update {
+                (it as ListUiState.Success).copy(
+                    country = chosenCountry
+                )
+            }
+        }
+    }
+
+    fun toggleFilter(){
+        if(_uiState.value is ListUiState.Success){
+            _uiState.update {
+                (it as ListUiState.Success).copy(
+                    isFilterExpanded = ! it.isFilterExpanded
+                )
+            }
+        }
+    }
+
+    private fun <T> concatenate(vararg lists: List<T>): List<T> {
+        return listOf(*lists).flatten()
     }
 }

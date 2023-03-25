@@ -15,9 +15,11 @@ import retrofit2.http.Path
 private const val BASE_URL = "https://api.thecatapi.com/v1/"
 private const val TOKEN = "live_wY5uAmAnrhUYFTU6tnTgmNxpvfkBoWSZ53yZ7SBUnbi4OlY2XaUgIE8Ogc5Q7uCF"
 
+private val customJson = Json { ignoreUnknownKeys = true }
+
 @OptIn(ExperimentalSerializationApi::class)
 private val retrofit = Retrofit.Builder()
-    .addConverterFactory(Json.asConverterFactory("application/json".toMediaType())) // ScalarsConverterFactory.create()
+    .addConverterFactory(customJson.asConverterFactory("application/json".toMediaType())) // ScalarsConverterFactory.create()
     .baseUrl(BASE_URL)
     .build()
 
@@ -32,7 +34,7 @@ interface CatApiService {
     suspend fun getCat(
         @Header("x-api-key") token: String = TOKEN,
         @Path("id") id: String
-    ) : CatInfoDto?
+    ) : CatInfoDto
 
     @GET("breeds/")
     suspend fun getBreeds(

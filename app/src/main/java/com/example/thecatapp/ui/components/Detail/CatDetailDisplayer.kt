@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.ui.components.CommonUsage.CountryDisplayer
 import com.example.thecatapp.ui.navigation.DetailNavigator
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.glide.GlideImage
@@ -31,7 +32,7 @@ fun CatDetailDisplayer(
     LazyColumn(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
-            .padding(start=8.dp, end=8.dp)
+            .padding(start = 8.dp, end = 8.dp)
             .fillMaxSize()
     ){
         item{
@@ -80,13 +81,7 @@ fun CatDetailDisplayer(
             Spacer(modifier = modifier.padding(4.dp))
         }
         item{
-            Text(
-                text = breed.country_code,
-                fontSize = 16.sp,
-                fontWeight = FontWeight.Normal,
-                modifier = modifier,
-
-                )
+            CountryDisplayer(countryCode = breed.country_code)
         }
         item{
             Spacer(modifier = modifier.padding(4.dp))
