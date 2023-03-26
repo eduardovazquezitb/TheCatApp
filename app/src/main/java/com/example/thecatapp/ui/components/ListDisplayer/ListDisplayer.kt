@@ -31,7 +31,8 @@ fun ListDisplayer(
     AppScaffold(
         activityName = stringResource(id = R.string.cat_list),
         isLoading = uiState.value == ListUiState.IsLoading,
-        isError = uiState.value == ListUiState.IsError
+        isError = uiState.value == ListUiState.IsError,
+        onTryAgainClick = { viewModel.getCatCards() }
     ) { modifier ->
         CardLazyColumn(
             catList,

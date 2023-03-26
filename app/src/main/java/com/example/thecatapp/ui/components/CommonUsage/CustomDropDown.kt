@@ -1,9 +1,6 @@
 package com.example.thecatapp.ui.components.ListDisplayer
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -39,38 +36,43 @@ fun CustomDropDown(
 
     val state = (uiState.value as CustomDropDownUiState.Success)
 
-    Box(
-        modifier = modifier
-            .padding(start= 8.dp, end=8.dp)
-            .width(width)
-    )
-    {
+    Row(
+        modifier = modifier.fillMaxWidth()
+    ){
         IconButton(
-            onClick = { viewModel.toggleDropdown() }
+            onClick = { viewModel.toggleDropdown() },
+            modifier = modifier
+                .padding(start= 16.dp, end=8.dp)
         ) {
             viewModel.chosenItemComposable(modifier)
         }
 
-        DropdownMenu(
-            expanded = state.isExpanded,
-            onDismissRequest = { if(state.isExpanded) viewModel.toggleDropdown() },
-            modifier = modifier.width(width)
-        ) {
+        Box(
+            modifier = modifier
+                .padding(start= 8.dp)
+                .width(width)
+        )
+        {
+            DropdownMenu(
+                expanded = state.isExpanded,
+                onDismissRequest = { if(state.isExpanded) viewModel.toggleDropdown() },
+                modifier = modifier.width(width)
+            ) {
 
-            viewModel.listOfItems.forEachIndexed { itemIndex, itemValue ->
-                DropdownMenuItem(
-                    onClick = {
-                        if(onClickedItem != null)
-                            onClickedItem(itemValue.value)
-                        viewModel.onItemClick(itemValue.value)
-                        viewModel.toggleDropdown()
-                    },
-                    modifier.fillMaxWidth()
-                ) {
-                    itemValue.display(modifier)
+                viewModel.listOfItems.forEachIndexed { itemIndex, itemValue ->
+                    DropdownMenuItem(
+                        onClick = {
+                            if(onClickedItem != null)
+                                onClickedItem(itemValue.value)
+                            viewModel.onItemClick(itemValue.value)
+                            viewModel.toggleDropdown()
+                        },
+                        modifier.fillMaxWidth()
+                    ) {
+                        itemValue.display(modifier)
+                    }
                 }
             }
         }
-
     }
 }

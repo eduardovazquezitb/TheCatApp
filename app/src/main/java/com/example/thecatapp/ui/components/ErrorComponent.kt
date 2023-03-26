@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Text
+import androidx.compose.material.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -27,7 +28,8 @@ import com.skydoves.landscapist.coil.CoilImage
 @Composable
 fun ErrorComponent(
     modifier: Modifier=Modifier,
-    viewModel: DistractionViewModel = viewModel()
+    onTryAgainClick : (() -> Unit)? = null,
+    viewModel: DistractionViewModel = viewModel(key = "error")
 )
 {
     val uiState = viewModel.uiState.collectAsState()
@@ -61,6 +63,11 @@ fun ErrorComponent(
                 .fillMaxWidth()
                 .clip(RoundedCornerShape(20.dp))
         )
+    }
+    if(onTryAgainClick != null){
+        TextButton(onClick = { onTryAgainClick() }) {
+            Text(text = stringResource(id = R.string.try_again))
+        }
     }
 }
 

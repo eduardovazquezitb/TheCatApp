@@ -27,12 +27,7 @@ fun CardLazyColumn(
                 Spacer(modifier = modifier.padding(4.dp))
             }
             item{
-                Row(
-                    horizontalArrangement = Arrangement.Center,
-                    modifier = modifier.fillMaxWidth()
-                ){
-                    header(modifier)
-                }
+                header(modifier)
             }
             item{
                 Spacer(modifier = modifier.padding(4.dp))

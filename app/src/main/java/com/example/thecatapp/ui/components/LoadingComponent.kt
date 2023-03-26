@@ -24,7 +24,7 @@ import com.example.thecatapp.ui.viewmodel.DistractionViewModel
 @Composable
 fun Loadingcomponent(
     modifier: Modifier=Modifier,
-    viewModel: DistractionViewModel = viewModel()
+    viewModel: DistractionViewModel = viewModel(key = "loading")
 )
 {
     val uiState = viewModel.uiState.collectAsState()
