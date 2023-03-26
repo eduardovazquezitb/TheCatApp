@@ -5,6 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.res.stringResource
 import com.example.thecatapp.R
 import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.model.CatInfoDto
 import com.example.thecatapp.ui.components.AppScaffold
 import com.example.thecatapp.ui.viewmodel.DetailUiState
 import com.example.thecatapp.ui.viewmodel.DetailViewModel
@@ -15,17 +16,15 @@ fun DetailDisplayer(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    val breed : BreedDto? =
-        if(uiState.value is DetailUiState.Success)
-            (uiState.value as DetailUiState.Success).breed
-        else
-            null
-
-    val catName : String =
-        if(breed == null)
-            stringResource(id = R.string.detail_title)
-        else
-            breed.name
+    var breed : BreedDto? = null
+    var catInfo : CatInfoDto? = null
+    var catName : String = stringResource(id = R.string.detail_title)
+    if(uiState.value is DetailUiState.Success){
+        val state = uiState.value as DetailUiState.Success
+        breed = state.breed
+        catInfo = state.catInfo
+        catName = breed.name
+    }
 
     AppScaffold(
         activityName = catName,
@@ -36,6 +35,7 @@ fun DetailDisplayer(
             DetailContainer(modifier = modifier) {
                 CatDetailDisplayer(
                     breed,
+                    catInfo,
                     modifier
                 )
             }

@@ -22,6 +22,7 @@ fun AppScaffold(
     isLoading: Boolean,
     isError: Boolean,
     onTryAgainClick: (() -> Unit)? = null,
+    topBarComponents: List<@Composable ((Modifier)->Unit)> = listOf(),
     children: @Composable (modifier: Modifier) -> Unit
 ) {
 
@@ -35,7 +36,8 @@ fun AppScaffold(
                     else if(isError)
                         stringResource(id = R.string.error_title)
                     else
-                        activityName
+                        activityName,
+                topBarComponents = topBarComponents
             ) },
         ) { padding ->
             Column(

@@ -16,6 +16,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.model.CatInfoDto
 import com.example.thecatapp.ui.components.CommonUsage.CountryDisplayer
 import com.example.thecatapp.ui.navigation.DetailNavigator
 import com.skydoves.landscapist.ImageOptions
@@ -24,6 +25,7 @@ import com.skydoves.landscapist.glide.GlideImage
 @Composable
 fun CatDetailDisplayer(
     breed: BreedDto,
+    catInfo: CatInfoDto?,
     modifier: Modifier = Modifier
 ) {
     val navigator = DetailNavigator()
@@ -42,7 +44,7 @@ fun CatDetailDisplayer(
             item{
                 GlideImage( // https://github.com/skydoves/landscapist
                     imageModel = {
-                        breed.image.url
+                        catInfo?.url ?: breed.image.url
                     },
                     imageOptions = ImageOptions(
                         contentScale = ContentScale.Crop

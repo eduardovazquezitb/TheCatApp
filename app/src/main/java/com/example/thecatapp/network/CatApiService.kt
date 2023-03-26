@@ -34,7 +34,13 @@ interface CatApiService {
     suspend fun getCat(
         @Header("x-api-key") token: String = TOKEN,
         @Path("id") id: String
-    ) : CatInfoDto
+    ) : CatInfoDto?
+
+    @GET("images/search/")
+    suspend fun getCatByBreed(
+        @Header("x-api-key") token: String = TOKEN,
+        @Query("breed_ids") breedId: String
+    ): List<CatInfoDto>
 
     @GET("breeds/")
     suspend fun getBreeds(

@@ -9,7 +9,8 @@ import androidx.compose.ui.text.style.TextOverflow
 @Composable
 fun TopBar(
     activityName: String,
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    topBarComponents: List<@Composable ((Modifier)->Unit)> = listOf(),
 ) {
     TopAppBar(
         /*navigationIcon = {
@@ -27,7 +28,8 @@ fun TopBar(
                 text = activityName,
                 overflow = TextOverflow.Ellipsis,
                 maxLines = 1,
-                modifier = modifier /*.clickable {  }*/
+                modifier = modifier
+                /*.clickable {  }*/
             ) },
         actions = {
             /*
@@ -48,6 +50,9 @@ fun TopBar(
                 }
             }
             */
+            topBarComponents.map {
+                it(modifier)
+            }
         }
     )
 }

@@ -36,9 +36,10 @@ fun CardLazyColumn(
         this.items(
             items = catListDisplayed,
             itemContent = {item ->
-            CatCard(
-                item
-            )
-        })
+                CatCard(
+                    item
+                )
+            }
+        )
     }
 }

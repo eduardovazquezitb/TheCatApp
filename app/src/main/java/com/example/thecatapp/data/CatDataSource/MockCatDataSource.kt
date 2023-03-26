@@ -69,6 +69,13 @@ class MockCatDataSource : CatDataSource {
         return null
     }
 
+    override suspend fun getRandomCatByBreed(breedId: String) : CatInfoDto? {
+        if(breedId == _breed.id)
+            return _catList[0]
+        else
+            return null
+    }
+
     override suspend fun getBreeds(): List<BreedDto> {
         return listOf(_breed)
     }

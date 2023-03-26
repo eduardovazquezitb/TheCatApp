@@ -10,7 +10,18 @@ class ApiCatDataSource : CatDataSource {
     }
 
     override suspend fun getCat(id: String): CatInfoDto? {
-        return TheCatApi.retrofitService.getCat(id = id)
+        return try{
+            TheCatApi.retrofitService.getCat(id = id)
+        } catch(e : Exception){
+            null
+        }
+    }
+
+    override suspend fun getRandomCatByBreed(breedId: String): CatInfoDto? {
+        val result = TheCatApi.retrofitService.getCatByBreed(breedId = breedId)
+        if(result.isEmpty())
+            return null
+        return result[0]
     }
 
     override suspend fun getBreeds(): List<BreedDto> {
