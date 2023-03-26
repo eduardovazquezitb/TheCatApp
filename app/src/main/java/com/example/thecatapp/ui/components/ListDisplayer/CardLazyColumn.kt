@@ -1,8 +1,6 @@
 package com.example.thecatapp.ui.components.ListDisplayer
 
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
@@ -11,34 +9,34 @@ import androidx.compose.ui.unit.dp
 import com.example.thecatapp.model.BreedDto
 
 @Composable
-fun CardList(
+fun CardLazyColumn(
     catList : List<BreedDto>,
     country : String?,
-    countryList: List<String?>,
-    setCountry :(String?) -> Unit,
-    isFilterExpanded: Boolean,
-    toggleFilter: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    header: (@Composable (Modifier) -> Unit)? = null
 ) {
     var catListDisplayed : List<BreedDto> = catList
     if(country != null)
         catListDisplayed = catListDisplayed.filter { it.country_code == country }
 
     LazyColumn(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier.fillMaxWidth()
     ){
-        item{
-            FilterByCountry(
-                country,
-                countryList,
-                setCountry,
-                isExpanded = isFilterExpanded,
-                toggleExpanded = toggleFilter,
-                modifier
-            )
-        }
-        item {
-            Spacer(modifier = modifier.padding(12.dp))
+        if(header != null){
+            item{
+                Spacer(modifier = modifier.padding(4.dp))
+            }
+            item{
+                Row(
+                    horizontalArrangement = Arrangement.Center,
+                    modifier = modifier.fillMaxWidth()
+                ){
+                    header(modifier)
+                }
+            }
+            item{
+                Spacer(modifier = modifier.padding(4.dp))
+            }
         }
         this.items(
             items = catListDisplayed,

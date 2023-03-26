@@ -31,16 +31,20 @@ class CountryDisplayerViewModel : ViewModel() {
                 if(result == null)
                     setErrorState()
                 else{
-                    _uiState.update {
-                        CountryDisplayerUiState.Success(
-                            result
-                        )
-                    }
+                    setSuccessState(result)
                 }
             }
             catch (e: Exception){
                 setErrorState()
             }
+        }
+    }
+
+    private fun setSuccessState(country: CountryDto){
+        _uiState.update {
+            CountryDisplayerUiState.Success(
+                country
+            )
         }
     }
 

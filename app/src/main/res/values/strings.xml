@@ -2,7 +2,7 @@
     <string name="app_name">TheCatApp</string>
     <string name="loading">Loading, please wait…</string>
     <string name="loading_title">Loading</string>
-    <string name="error">Something went wrong.</string>
+    <string name="error">Oops, something went wrong.</string>
     <string name="error_title">ERROR</string>
     <string name="sign_in_title">Sign In</string>
     <string name="login_header_title">Welcome Back</string>
@@ -14,4 +14,5 @@
     <string name="title_activity_detail">DetailActivity</string>
     <string name="detail_title">Cat Detail</string>
     <string name="distraction">A cute distracting cat!</string>
+    <string name="anywhere">Anywhere</string>
 </resources>

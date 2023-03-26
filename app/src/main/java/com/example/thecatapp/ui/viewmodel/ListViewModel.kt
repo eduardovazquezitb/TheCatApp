@@ -16,7 +16,6 @@ sealed interface ListUiState {
     data class Success(
         val catList: List<BreedDto>,
         val country: String?,
-        val isFilterExpanded: Boolean
     ) : ListUiState
     object IsLoading : ListUiState
     object IsError : ListUiState
@@ -49,8 +48,7 @@ class ListViewModel : ViewModel() {
                 _uiState.update {
                     ListUiState.Success(
                         catList = result.sortedBy { it.name },
-                        country = null,
-                        isFilterExpanded = false
+                        country = null
                     )
                 }
             } catch (e : Exception) {
@@ -67,16 +65,6 @@ class ListViewModel : ViewModel() {
             _uiState.update {
                 (it as ListUiState.Success).copy(
                     country = chosenCountry
-                )
-            }
-        }
-    }
-
-    fun toggleFilter(){
-        if(_uiState.value is ListUiState.Success){
-            _uiState.update {
-                (it as ListUiState.Success).copy(
-                    isFilterExpanded = ! it.isFilterExpanded
                 )
             }
         }

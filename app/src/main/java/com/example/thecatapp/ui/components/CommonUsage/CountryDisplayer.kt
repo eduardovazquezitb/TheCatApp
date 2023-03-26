@@ -45,28 +45,29 @@ fun CountryDisplayer(
         }
         else{
             val country = (uiState.value as CountryDisplayerUiState.Success).country
-                if(country.flags != null) {
-                    GlideImage( // https://github.com/skydoves/landscapist
-                        imageModel = {
-                            country.flags.png ?: country.flags.svg
-                        },
-                        imageOptions = ImageOptions(
-                            contentScale = ContentScale.Fit,
-                            contentDescription = country.flags.alt ?: countryCode
-                        ),
-                        modifier = modifier
-                            .size(size)
-                    )
-                } else
-                    Spacer(modifier = modifier.padding(size))
-                Spacer(modifier = modifier.padding(4.dp))
-                Text(
-                    text =
-                        if(country.name != null)
-                            country.name.common ?: countryCode
-                        else
-                            countryCode
+            if(country.flags != null) {
+                GlideImage( // https://github.com/skydoves/landscapist
+                    imageModel = {
+                        country.flags.png ?: country.flags.svg
+                    },
+                    imageOptions = ImageOptions(
+                        contentScale = ContentScale.Fit,
+                        contentDescription = country.flags.alt ?: countryCode
+                    ),
+                    modifier = modifier
+                        .size(size)
                 )
+            }
+            else
+                Spacer(modifier = modifier.padding(size))
+            Spacer(modifier = modifier.padding(4.dp))
+            Text(
+                text =
+                    if(country.name != null)
+                        country.name.common ?: countryCode
+                    else
+                        countryCode
+            )
         }
     }
 }

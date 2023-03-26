@@ -9,6 +9,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.thecatapp.ui.components.CommonUsage.CountryDisplayer
 
+// Overridden by generic Component CustomDropDown
+
+@Suppress("unused")
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun FilterByCountry(
