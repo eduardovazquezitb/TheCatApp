@@ -1,4 +1,4 @@
-package com.example.thecatapp.ui.components.Helpers
+package com.example.thecatapp.helpers
 
 import android.text.TextUtils
 import androidx.annotation.StringRes

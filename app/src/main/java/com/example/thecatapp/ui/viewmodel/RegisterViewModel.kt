@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.thecatapp.R
-import com.example.thecatapp.ui.components.Helpers.IsPasswordWellFormatted
-import com.example.thecatapp.ui.components.Helpers.isEmailValid
+import com.example.thecatapp.helpers.IsPasswordWellFormatted
+import com.example.thecatapp.helpers.isEmailValid
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -17,8 +17,8 @@ sealed interface RegisterUiState{
         @StringRes val message : Int,
         val parameter: String = ""
     ) : RegisterUiState
+    object EmailHasBeenSent : RegisterUiState
 }
-
 
 class RegisterViewModel : ViewModel() {
     private val _uiState = MutableStateFlow<RegisterUiState>(RegisterUiState.IsOk)
@@ -39,7 +39,7 @@ class RegisterViewModel : ViewModel() {
             return false
         }
 
-        SetOkState()
+        SetEmailSentState()
         return true
     }
 
@@ -51,8 +51,8 @@ class RegisterViewModel : ViewModel() {
         this.password.value = password
     }
 
-    private fun SetOkState() {
-        _uiState.value = RegisterUiState.IsOk
+    private fun SetEmailSentState() {
+        _uiState.value = RegisterUiState.EmailHasBeenSent
     }
 
     private fun SetNotOkState(message: Int, parameter: String = "") {

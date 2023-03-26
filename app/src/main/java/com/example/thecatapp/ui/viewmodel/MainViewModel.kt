@@ -7,7 +7,7 @@ import com.example.thecatapp.R
 import com.example.thecatapp.data.UserCredentialsChecker.MockUserCredentialsChecker
 import com.example.thecatapp.data.UserCredentialsChecker.UserCredentialsChecker
 import com.example.thecatapp.model.UserCredentials
-import com.example.thecatapp.ui.components.Helpers.isEmailValid
+import com.example.thecatapp.helpers.isEmailValid
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
