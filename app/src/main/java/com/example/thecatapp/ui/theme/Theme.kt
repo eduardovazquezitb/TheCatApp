@@ -10,7 +10,8 @@ private val DarkColorPalette = darkColors(
     primary = Turquoise,
     primaryVariant = Purple,
     secondary = Blue,
-    secondaryVariant = LightBlue
+    secondaryVariant = LightBlue,
+    onError = Red
 )
 
 private val LightColorPalette = lightColors(
@@ -19,6 +20,7 @@ private val LightColorPalette = lightColors(
     secondary = Sand,
     secondaryVariant = DarkSand,
     surface = Blue,
+    onError = Red
 
     /* Other default colors to override
     background = Color.White,

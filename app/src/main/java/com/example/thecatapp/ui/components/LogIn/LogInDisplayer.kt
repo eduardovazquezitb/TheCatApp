@@ -15,15 +15,21 @@ import com.example.thecatapp.ui.components.LogIn.LogInBody
 import com.example.thecatapp.ui.components.LogIn.LogInFooter
 import com.example.thecatapp.ui.components.LogIn.LogInHeader
 import com.example.thecatapp.ui.navigation.MainNavigator
+import com.example.thecatapp.ui.viewmodel.LoginUiState
 import com.example.thecatapp.ui.viewmodel.MainViewModel
 
 @Composable
 fun LogInDisplayer(
     viewModel : MainViewModel
 ) {
-    val isError = viewModel.uiState.collectAsState()
+    val uiState = viewModel.uiState.collectAsState()
     val navigator = MainNavigator()
     val context = LocalContext.current as Activity
+    val errorMessage =
+        if(uiState.value is LoginUiState.IsNotOk)
+            stringResource(id = (uiState.value as LoginUiState.IsNotOk).message)
+        else
+            ""
 
     AppScaffold(
         activityName = stringResource(id = R.string.sign_in_title),
@@ -39,21 +45,25 @@ fun LogInDisplayer(
                 subtitle = stringResource(id = R.string.login_header_subtitle)
             )
             LogInBody(
-                isError = isError.value,
+                isError = uiState.value is LoginUiState.IsNotOk,
                 username = viewModel.username.value,
                 setUsername = {
-                    viewModel.username.value = it
+                    viewModel.SetUsername(it)
                 },
                 password = viewModel.password.value,
                 setPassword = {
-                    viewModel.password.value = it
+                    viewModel.SetPassword(it)
                 },
                 modifier = Modifier.weight(1F)
             )
             LogInFooter(
+                errorMessage,
                 onSignInClick = {
                     if(viewModel.CheckUserCredentials())
                         navigator.goToListDisplay(context)
+                },
+                onNoAccountClick = {
+                    navigator.goToRegisterDisplay(context)
                 }
             )
         }

@@ -23,7 +23,9 @@ fun LogInBody(
     setUsername: (String) -> Unit,
     password: String,
     setPassword: (String) -> Unit,
-    modifier : Modifier = Modifier
+    modifier : Modifier = Modifier,
+    usernamePlaceholder: String = stringResource(id = R.string.username_placeholder),
+    passwordPlaceholder: String = stringResource(id = R.string.password_placeholder),
 ){
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -33,7 +35,7 @@ fun LogInBody(
 
         InputBox(
             value = username,
-            placeholder = "Enter username",
+            placeholder = usernamePlaceholder,
             onValueChange = {
                 setUsername(it)
             },
@@ -41,7 +43,7 @@ fun LogInBody(
             leadingIcon = {
                 Icon(
                     Icons.Default.Email,
-                    contentDescription = stringResource(id = R.string.email)
+                    contentDescription = stringResource(id = R.string.email_icon_alt)
                 )
             }
         )
@@ -50,7 +52,7 @@ fun LogInBody(
 
         InputBox(
             value = password,
-            placeholder = "Enter password",
+            placeholder = passwordPlaceholder,
             onValueChange = {
                 setPassword(it)
             },
@@ -58,7 +60,7 @@ fun LogInBody(
             leadingIcon = {
                 Icon(
                     Icons.Default.Shield,
-                    contentDescription = stringResource(id = R.string.email)
+                    contentDescription = stringResource(id = R.string.password_icon_alt)
                 )
             },
             visualTransformation = PasswordVisualTransformation()

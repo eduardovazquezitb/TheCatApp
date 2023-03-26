@@ -25,19 +25,20 @@ class CountryDisplayerViewModel : ViewModel() {
     private val _dataSource = CountryDataSource()
 
     fun loadCountry(code : String){
-        viewModelScope.launch {
-            try{
-                val result = _dataSource.getCountryByCode(code)
-                if(result == null)
+        if(_uiState.value is CountryDisplayerUiState.IsLoading || _uiState.value is CountryDisplayerUiState.IsError)
+            viewModelScope.launch {
+                try{
+                    val result = _dataSource.getCountryByCode(code)
+                    if(result == null)
+                        setErrorState()
+                    else{
+                        setSuccessState(result)
+                    }
+                }
+                catch (e: Exception){
                     setErrorState()
-                else{
-                    setSuccessState(result)
                 }
             }
-            catch (e: Exception){
-                setErrorState()
-            }
-        }
     }
 
     private fun setSuccessState(country: CountryDto){

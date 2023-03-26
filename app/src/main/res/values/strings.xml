@@ -7,7 +7,15 @@
     <string name="sign_in_title">Sign In</string>
     <string name="login_header_title">Welcome Back</string>
     <string name="login_header_subtitle">Sign in to continue</string>
-    <string name="email">email</string>
+    <string name="register_title">Sign Up</string>
+    <string name="register_header_title"> </string>
+    <string name="register_header_subtitle">Please enter your email.</string>
+    <string name="username_placeholder">Enter email</string>
+    <string name="password_placeholder">Enter password</string>
+    <string name="incorrect_credentials">Invalid username or password.</string>
+    <string name="invalid_email">Invalid email.</string>
+    <string name="email_icon_alt">email icon</string>
+    <string name="password_icon_alt">password icon</string>
     <string name="no_account">I don\'t have an account</string>
     <string name="title_activity_list">ListActivity</string>
     <string name="cat_list">Cute Cats!</string>
@@ -16,4 +24,9 @@
     <string name="distraction">A cute distracting cat!</string>
     <string name="anywhere">Anywhere</string>
     <string name="try_again">Try again.</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="no_empty_password">Password cannot be empty.</string>
+    <string name="min_length_password">Password must contain % characters.</string>
+    <string name="no_vowels_password">Password must contain vowels.</string>
+    <string name="no_numbers_password">Password must contain numbers.</string>
 </resources>
