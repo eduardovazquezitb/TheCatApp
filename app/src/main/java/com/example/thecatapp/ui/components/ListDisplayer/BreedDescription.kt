@@ -12,11 +12,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.ui.model.BreedUiModel
 
 @Composable
 fun BreedDescription(
-    breed: BreedDto,
+    breed: BreedUiModel,
     modifier: Modifier = Modifier
 ) {
     Column(

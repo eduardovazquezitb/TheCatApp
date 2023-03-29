@@ -59,7 +59,7 @@ fun CustomDropDown(
                 modifier = modifier.width(width)
             ) {
 
-                viewModel.listOfItems.forEachIndexed { itemIndex, itemValue ->
+                viewModel.listOfItems.forEachIndexed { _, itemValue ->
                     DropdownMenuItem(
                         onClick = {
                             if(onClickedItem != null)

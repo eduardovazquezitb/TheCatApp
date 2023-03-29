@@ -1,7 +1,8 @@
-package com.example.thecatapp.data.CatDataSource
+package com.example.thecatapp.data.datasource.CatDataSource
 
-import com.example.thecatapp.model.BreedDto
-import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.data.CatDataSource.TheCatApi
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.data.model.CatInfoDto
 
 
 class ApiCatDataSource : CatDataSource {

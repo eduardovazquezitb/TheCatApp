@@ -31,16 +31,17 @@ class CustomDropDownViewModel : ViewModel() {
     var chosenItemComposable : @Composable (Modifier) -> Unit = { }
 
     fun loadListOfItems(dropDownItems: List<CustomDropDownItem>){
-        if(dropDownItems.size > 0){
-            listOfItems = dropDownItems
-            chosenItemComposable = listOfItems[0].display
-            _uiState.update{
-                CustomDropDownUiState.Success(
-                    isExpanded = false,
-                    chosenItem = listOfItems[0].value
-                )
+        if(listOfItems.isEmpty())
+            if(dropDownItems.size > 0){
+                listOfItems = dropDownItems
+                chosenItemComposable = listOfItems[0].display
+                _uiState.update{
+                    CustomDropDownUiState.Success(
+                        isExpanded = false,
+                        chosenItem = listOfItems[0].value
+                    )
+                }
             }
-        }
     }
 
     fun toggleDropdown(){

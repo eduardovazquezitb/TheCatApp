@@ -4,8 +4,8 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.thecatapp.R
-import com.example.thecatapp.helpers.IsPasswordWellFormatted
-import com.example.thecatapp.helpers.isEmailValid
+import com.example.thecatapp.ui.helpers.isPasswordWellFormatted
+import com.example.thecatapp.ui.helpers.isEmailValid
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -33,7 +33,7 @@ class RegisterViewModel : ViewModel() {
             return false
         }
 
-        val result = password.value.IsPasswordWellFormatted()
+        val result = password.value.isPasswordWellFormatted()
         if(! result.isOk && result.message != null){
             SetNotOkState(result.message, result.parameter)
             return false

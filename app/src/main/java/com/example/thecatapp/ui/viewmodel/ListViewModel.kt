@@ -3,9 +3,11 @@ package com.example.thecatapp.ui.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.thecatapp.data.CatDataSource.ApiCatDataSource
-import com.example.thecatapp.data.CatDataSource.CatDataSource
-import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.data.datasource.CatDataSource.ApiCatDataSource
+import com.example.thecatapp.data.datasource.CatDataSource.CatDataSource
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.ui.model.BreedUiModel
+import com.example.thecatapp.ui.model.mapper.toBreedUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,7 +16,7 @@ import kotlinx.coroutines.launch
 
 sealed interface ListUiState {
     data class Success(
-        val catList: List<BreedDto>,
+        val catList: List<BreedUiModel>,
         val country: String?,
     ) : ListUiState
     object IsLoading : ListUiState
@@ -32,32 +34,32 @@ class ListViewModel : ViewModel() {
     var listOfCountries : List<String?> = listOf(null)
 
     fun getCatCards(){
-        _uiState.value = ListUiState.IsLoading
-        viewModelScope.launch {
-            try{
-                val result = _dataSource.getBreeds()
-                listOfCountries = concatenate(
-                    listOf(null),
-                    result
-                        .map { it.country_code }
-                        .toSet()
-                        .toList()
-                        .sorted()
-                )
-
-                _uiState.update {
-                    ListUiState.Success(
-                        catList = result.sortedBy { it.name },
-                        country = null
+        if(_uiState.value is ListUiState.IsLoading || _uiState.value is ListUiState.IsError)
+            viewModelScope.launch {
+                try{
+                    val result = _dataSource.getBreeds().map{ it.toBreedUiModel() }
+                    listOfCountries = concatenate(
+                        listOf(null),
+                        result
+                            .map { it.country_code }
+                            .toSet()
+                            .toList()
+                            .sorted()
                     )
-                }
-            } catch (e : Exception) {
-                Log.i("ERROR", e.toString())
-                _uiState.update {
-                    ListUiState.IsError
+
+                    _uiState.update {
+                        ListUiState.Success(
+                            catList = result.sortedBy { it.name },
+                            country = null
+                        )
+                    }
+                } catch (e : Exception) {
+                    Log.i("ERROR", e.toString())
+                    _uiState.update {
+                        ListUiState.IsError
+                    }
                 }
             }
-        }
     }
 
     fun setCountry(chosenCountry: String?){

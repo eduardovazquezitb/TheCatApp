@@ -2,9 +2,11 @@ package com.example.thecatapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.thecatapp.data.CatDataSource.ApiCatDataSource
-import com.example.thecatapp.data.CatDataSource.CatDataSource
-import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.data.datasource.CatDataSource.ApiCatDataSource
+import com.example.thecatapp.data.datasource.CatDataSource.CatDataSource
+import com.example.thecatapp.data.model.CatInfoDto
+import com.example.thecatapp.ui.model.CatCardUiModel
+import com.example.thecatapp.ui.model.mapper.toCatCardUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 sealed interface CatCardUiState {
-    data class Success(val catInfo: CatInfoDto) : CatCardUiState
+    data class Success(val catInfo: CatCardUiModel) : CatCardUiState
     object IsLoading : CatCardUiState
     object IsError : CatCardUiState
 }
@@ -45,7 +47,7 @@ class CatCardViewModel : ViewModel() {
     private fun setSuccessState(catInfo: CatInfoDto){
         _uiState.update {
             CatCardUiState.Success(
-                catInfo
+                catInfo.toCatCardUiModel()
             )
         }
     }

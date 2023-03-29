@@ -1,6 +1,6 @@
-package com.example.thecatapp.network
+package com.example.thecatapp.data.network
 
-import com.example.thecatapp.model.CountryDto
+import com.example.thecatapp.data.model.CountryDto
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
@@ -8,6 +8,8 @@ import retrofit2.Retrofit
 import retrofit2.http.GET
 import okhttp3.MediaType.Companion.toMediaType
 import retrofit2.http.Path
+
+// Esta API a veces está down si no furrula no eh mi culpa
 
 private const val BASE_URL = "https://restcountries.com/v3.1/"
 

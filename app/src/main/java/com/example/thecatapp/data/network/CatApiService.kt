@@ -1,7 +1,7 @@
 package com.example.thecatapp.data.CatDataSource
 
-import com.example.thecatapp.model.BreedDto
-import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.data.model.CatInfoDto
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json

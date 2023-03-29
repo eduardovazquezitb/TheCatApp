@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.res.stringResource
 import com.example.thecatapp.R
-import com.example.thecatapp.model.BreedDto
-import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.data.model.CatInfoDto
 import com.example.thecatapp.ui.components.AppScaffold
+import com.example.thecatapp.ui.model.BreedUiModel
+import com.example.thecatapp.ui.model.CatCardUiModel
 import com.example.thecatapp.ui.viewmodel.DetailUiState
 import com.example.thecatapp.ui.viewmodel.DetailViewModel
 
@@ -16,8 +18,8 @@ fun DetailDisplayer(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    var breed : BreedDto? = null
-    var catInfo : CatInfoDto? = null
+    var breed : BreedUiModel? = null
+    var catInfo : CatCardUiModel? = null
     var catName : String = stringResource(id = R.string.detail_title)
     if(uiState.value is DetailUiState.Success){
         val state = uiState.value as DetailUiState.Success

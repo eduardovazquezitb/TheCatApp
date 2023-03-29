@@ -1,4 +1,4 @@
-package com.example.thecatapp.data
+package com.example.thecatapp.data.datasource
 
 import com.example.thecatapp.R
 import kotlin.random.Random

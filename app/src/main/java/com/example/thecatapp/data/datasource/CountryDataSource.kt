@@ -1,7 +1,7 @@
-package com.example.thecatapp.data
+package com.example.thecatapp.data.datasource
 
-import com.example.thecatapp.model.CountryDto
-import com.example.thecatapp.network.CountryApi
+import com.example.thecatapp.data.model.CountryDto
+import com.example.thecatapp.data.network.CountryApi
 
 class CountryDataSource {
     suspend fun getCountryByCode(code: String) : CountryDto? {

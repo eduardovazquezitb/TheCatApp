@@ -14,10 +14,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.thecatapp.model.BreedDto
-import com.example.thecatapp.model.CatInfoDto
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.data.model.CatInfoDto
+import com.example.thecatapp.ui.model.BreedUiModel
+import com.example.thecatapp.ui.model.CatCardUiModel
 import com.example.thecatapp.ui.navigation.ListNavigator
 import com.example.thecatapp.ui.viewmodel.CatCardUiState
 import com.example.thecatapp.ui.viewmodel.CatCardViewModel
@@ -26,7 +30,7 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @Composable
 fun CatCard (
-    breed: BreedDto,
+    breed: BreedUiModel,
     modifier: Modifier = Modifier,
     viewModel: CatCardViewModel = viewModel(key = breed.id)
 ) {
@@ -37,7 +41,7 @@ fun CatCard (
     val navigator = ListNavigator()
     val activity = LocalContext.current as Activity
 
-    var catinfo : CatInfoDto? = null
+    var catinfo : CatCardUiModel? = null
     if(uiState.value is CatCardUiState.Success)
         catinfo = (uiState.value as CatCardUiState.Success).catInfo
 
@@ -72,7 +76,8 @@ fun CatCard (
                         catInfo.url
                     },
                     imageOptions = ImageOptions(
-                        contentScale = ContentScale.Crop
+                        contentScale = ContentScale.Crop,
+                        contentDescription = stringResource(id = com.example.thecatapp.R.string.cat_list)
                     ),
                     modifier = modifier
                         .size(110.dp)

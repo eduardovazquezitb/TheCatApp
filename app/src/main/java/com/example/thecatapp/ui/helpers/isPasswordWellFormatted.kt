@@ -1,4 +1,4 @@
-package com.example.thecatapp.helpers
+package com.example.thecatapp.ui.helpers
 
 import android.text.TextUtils
 import androidx.annotation.StringRes
@@ -14,7 +14,7 @@ data class PasswordCheckerReturn (
     val parameter: String = ""
 )
 
-fun String.IsPasswordWellFormatted(): PasswordCheckerReturn {
+fun String.isPasswordWellFormatted(): PasswordCheckerReturn {
     if(TextUtils.isEmpty(this))
         return PasswordCheckerReturn(
             isOk = false,

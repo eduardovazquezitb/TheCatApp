@@ -5,10 +5,11 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.example.thecatapp.R
-import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.data.model.BreedDto
 import com.example.thecatapp.ui.components.AppScaffold
 import com.example.thecatapp.ui.components.CommonUsage.CountryDisplayer
 import com.example.thecatapp.ui.components.CommonUsage.TheWorld
+import com.example.thecatapp.ui.model.BreedUiModel
 import com.example.thecatapp.ui.viewmodel.CustomDropDownItem
 import com.example.thecatapp.ui.viewmodel.ListUiState
 import com.example.thecatapp.ui.viewmodel.ListViewModel
@@ -19,7 +20,7 @@ fun ListDisplayer(
 ) {
     val uiState = viewModel.uiState.collectAsState()
 
-    var catList : List<BreedDto> = listOf()
+    var catList : List<BreedUiModel> = listOf()
     var country : String? = null
 
     if(uiState.value is ListUiState.Success){

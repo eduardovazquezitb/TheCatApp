@@ -1,4 +1,4 @@
-package com.example.thecatapp.helpers
+package com.example.thecatapp.ui.helpers
 
 import android.text.TextUtils
 

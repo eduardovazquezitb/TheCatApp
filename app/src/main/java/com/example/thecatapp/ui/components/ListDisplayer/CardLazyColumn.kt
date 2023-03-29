@@ -6,16 +6,17 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.thecatapp.model.BreedDto
+import com.example.thecatapp.data.model.BreedDto
+import com.example.thecatapp.ui.model.BreedUiModel
 
 @Composable
 fun CardLazyColumn(
-    catList : List<BreedDto>,
+    catList : List<BreedUiModel>,
     country : String?,
     modifier: Modifier = Modifier,
     header: (@Composable (Modifier) -> Unit)? = null
 ) {
-    var catListDisplayed : List<BreedDto> = catList
+    var catListDisplayed : List<BreedUiModel> = catList
     if(country != null)
         catListDisplayed = catListDisplayed.filter { it.country_code == country }
 

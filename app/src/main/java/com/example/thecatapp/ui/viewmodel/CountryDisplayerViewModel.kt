@@ -1,9 +1,10 @@
 package com.example.thecatapp.ui.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.thecatapp.data.CountryDataSource
-import com.example.thecatapp.model.CountryDto
+import com.example.thecatapp.data.datasource.CountryDataSource
+import com.example.thecatapp.data.model.CountryDto
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -36,6 +37,7 @@ class CountryDisplayerViewModel : ViewModel() {
                     }
                 }
                 catch (e: Exception){
+                    Log.i("ERROR", e.toString())
                     setErrorState()
                 }
             }

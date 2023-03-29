@@ -4,10 +4,10 @@ import androidx.annotation.StringRes
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import com.example.thecatapp.R
-import com.example.thecatapp.data.UserCredentialsChecker.MockUserCredentialsChecker
-import com.example.thecatapp.data.UserCredentialsChecker.UserCredentialsChecker
-import com.example.thecatapp.model.UserCredentials
-import com.example.thecatapp.helpers.isEmailValid
+import com.example.thecatapp.data.datasource.UserCredentialsChecker.MockUserCredentialsChecker
+import com.example.thecatapp.data.datasource.UserCredentialsChecker.UserCredentialsChecker
+import com.example.thecatapp.data.model.UserCredentials
+import com.example.thecatapp.ui.helpers.isEmailValid
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -1,7 +1,7 @@
 package com.example.thecatapp.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
-import com.example.thecatapp.data.RandomCatImagesSource
+import com.example.thecatapp.data.datasource.RandomCatImagesSource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -14,10 +14,12 @@ class DistractionViewModel : ViewModel() {
     private val _dataSource = RandomCatImagesSource()
 
     fun loadRandomImage(){
-        _uiState.value = _dataSource.getRandomCatImage()
+        if(_uiState.value == null)
+            _uiState.value = _dataSource.getRandomCatImage()
     }
 
     fun loadRandomAnimation(){
-        _uiState.value = _dataSource.getRandomAnimatedCat()
+        if(_uiState.value == null)
+            _uiState.value = _dataSource.getRandomAnimatedCat()
     }
 }

@@ -1,6 +1,6 @@
-package com.example.thecatapp.data.UserCredentialsChecker
+package com.example.thecatapp.data.datasource.UserCredentialsChecker
 
-import com.example.thecatapp.model.UserCredentials
+import com.example.thecatapp.data.model.UserCredentials
 
 class MockUserCredentialsChecker : UserCredentialsChecker {
 

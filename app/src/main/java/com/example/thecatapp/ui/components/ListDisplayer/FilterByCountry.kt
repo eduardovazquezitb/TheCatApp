@@ -48,7 +48,7 @@ fun FilterByCountry(
                 modifier = modifier
             ) {
 
-                countryList.forEachIndexed { itemIndex, itemValue ->
+                countryList.forEachIndexed { _, itemValue ->
                     DropdownMenuItem(
                         onClick = {
                             setCountry(itemValue)
