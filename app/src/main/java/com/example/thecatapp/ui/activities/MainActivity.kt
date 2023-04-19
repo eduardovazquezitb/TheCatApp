@@ -5,16 +5,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.thecatapp.ui.components.LogInDisplayer
 import com.example.thecatapp.ui.theme.TheCatAppTheme
 import com.example.thecatapp.ui.viewmodel.MainViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val viewModel : MainViewModel = viewModel()
+            val viewModel : MainViewModel = hiltViewModel()
             LogInDisplayer(viewModel)
         }
     }

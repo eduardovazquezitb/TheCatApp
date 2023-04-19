@@ -14,7 +14,7 @@
     <string name="password_placeholder">Enter password</string>
     <string name="incorrect_credentials">Invalid username or password.</string>
     <string name="invalid_email">Invalid email.</string>
-    <string name="email_sent_title">Registration email sent!</string>
+    <string name="email_sent_title">Registration complete!</string>
     <string name="email_sent_subtitle">Please check your email</string>
     <string name="go_back_to_main">Go back to sign in screen.</string>
     <string name="email_icon_alt">email icon</string>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TheCatApp</string>
+    <string name="loading">Cargando, espere por favor…</string>
+    <string name="loading_title">Cargando</string>
+    <string name="error">Ups, algo fue mal.</string>
+    <string name="error_title">ERROR</string>
+    <string name="sign_in_title">Iniciar sesión</string>
+    <string name="login_header_title">Bienvenido</string>
+    <string name="login_header_subtitle">Introduzca sus credenciales</string>
+    <string name="register_title">Registrarse</string>
+    <string name="register_header_title"> </string>
+    <string name="register_header_subtitle">Por favor introduzca su email.</string>
+    <string name="username_placeholder">Email…</string>
+    <string name="password_placeholder">Contraseña…</string>
+    <string name="incorrect_credentials">Credenciales incorrectas.</string>
+    <string name="invalid_email">Email no válido.</string>
+    <string name="email_sent_title">Usuario registrado!</string>
+    <string name="email_sent_subtitle">Por favor, compruebe su email</string>
+    <string name="go_back_to_main">Ir a la pantalla de inicio.</string>
+    <string name="email_icon_alt">Icono de email</string>
+    <string name="password_icon_alt">Icono de password</string>
+    <string name="no_account">No estoy registrado</string>
+    <string name="title_activity_list">ListActivity</string>
+    <string name="cat_list">Gatos Cuquis!</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="detail_title">Detalles del Gato</string>
+    <string name="distraction">Un gato muy divertido!</string>
+    <string name="anywhere">Del mundo</string>
+    <string name="try_again">Vuelva a intentar.</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="no_empty_password">La contraseña no puede ser vacía.</string>
+    <string name="min_length_password">La contraseña deber contener % caracteres.</string>
+    <string name="no_vowels_password">La contraseña debe contener vocales.</string>
+    <string name="no_numbers_password">La contraseña debe contener números.</string>
+</resources>

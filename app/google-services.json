@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "92291196420",
+    "project_id": "thecatapp-fcb20",
+    "storage_bucket": "thecatapp-fcb20.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92291196420:android:f74f97b4064b0884313751",
+        "android_client_info": {
+          "package_name": "com.example.thecatapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92291196420-b9gkhf8o5vr932m1151sjd0bpgi5acap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB1LH1aLfIQzg797ttKJQgRnM2ZaUC-x6A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92291196420-b9gkhf8o5vr932m1151sjd0bpgi5acap.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -13,16 +13,17 @@ fun TopBar(
     topBarComponents: List<@Composable ((Modifier)->Unit)> = listOf(),
 ) {
     TopAppBar(
+
         /*navigationIcon = {
-            IconButton(onClick = { }) {
-                Icon(
-                    painter = painterResource(id = com.example.temtemreference.R.drawable.logo),
-                    contentDescription = stringResource(id = com.example.temtemreference.R.string.app_name),
-                    tint = Color.Unspecified,
-                    modifier = modifier.clickable { onGoBackClick!!() }
-                )
-            }
-        },*/
+        IconButton(onClick = { }) {
+            Icon(
+                painter = painterResource(id = com.example.temtemreference.R.drawable.logo),
+                contentDescription = stringResource(id = com.example.temtemreference.R.string.app_name),
+                tint = Color.Unspecified,
+                modifier = modifier.clickable { onGoBackClick!!() }
+            )
+        }
+    },*/
         title = {
             Text(
                 text = activityName,
@@ -30,26 +31,27 @@ fun TopBar(
                 maxLines = 1,
                 modifier = modifier
                 /*.clickable {  }*/
-            ) },
+            )
+        },
         actions = {
             /*
-            if(onGoBackButton != null){
-                IconButton(onClick = { onGoBackButton() } ) {
-                    Icon(
-                        imageVector = Icons.Filled.Home,
-                        contentDescription = stringResource(id = R.string.change_theme)
-                    )
-                }
+        if(onGoBackButton != null){
+            IconButton(onClick = { onGoBackButton() } ) {
+                Icon(
+                    imageVector = Icons.Filled.Home,
+                    contentDescription = stringResource(id = R.string.change_theme)
+                )
             }
-            if(onThemeClick != null){
-                IconButton(onClick = { onThemeClick() } ) {
-                    Icon(
-                        imageVector = Icons.Filled.FormatPaint,
-                        contentDescription = stringResource(id = R.string.change_theme)
-                    )
-                }
+        }
+        if(onThemeClick != null){
+            IconButton(onClick = { onThemeClick() } ) {
+                Icon(
+                    imageVector = Icons.Filled.FormatPaint,
+                    contentDescription = stringResource(id = R.string.change_theme)
+                )
             }
-            */
+        }
+        */
             topBarComponents.map {
                 it(modifier)
             }

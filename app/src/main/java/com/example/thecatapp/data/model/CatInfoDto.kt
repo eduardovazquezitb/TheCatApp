@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class CatInfoDto(
-    val breeds: List<BreedDto>,
+    val breeds: List<BreedDto>? = null,
     val categories: List<CategoryDto>? = null,
     val height: Int,
     val id: String,

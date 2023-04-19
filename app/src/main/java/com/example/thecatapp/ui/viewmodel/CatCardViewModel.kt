@@ -39,6 +39,7 @@ class CatCardViewModel : ViewModel() {
                     }
                 }
                 catch (e: Exception){
+
                     setErrorState()
                 }
             }
