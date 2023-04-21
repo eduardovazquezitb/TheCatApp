@@ -32,7 +32,7 @@ class CustomDropDownViewModel : ViewModel() {
 
     fun loadListOfItems(dropDownItems: List<CustomDropDownItem>){
         if(listOfItems.isEmpty())
-            if(dropDownItems.size > 0){
+            if(dropDownItems.isNotEmpty()){
                 listOfItems = dropDownItems
                 chosenItemComposable = listOfItems[0].display
                 _uiState.update{

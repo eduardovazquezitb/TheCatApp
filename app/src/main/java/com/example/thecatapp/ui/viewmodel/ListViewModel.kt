@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.thecatapp.data.datasource.CatDataSource.ApiCatDataSource
 import com.example.thecatapp.data.datasource.CatDataSource.CatDataSource
-import com.example.thecatapp.data.model.BreedDto
 import com.example.thecatapp.ui.model.BreedUiModel
 import com.example.thecatapp.ui.model.mapper.toBreedUiModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -55,9 +54,7 @@ class ListViewModel : ViewModel() {
                     }
                 } catch (e : Exception) {
                     Log.i("ERROR", e.toString())
-                    _uiState.update {
-                        ListUiState.IsError
-                    }
+                    setErrorState()
                 }
             }
     }
@@ -69,6 +66,12 @@ class ListViewModel : ViewModel() {
                     country = chosenCountry
                 )
             }
+        }
+    }
+
+    fun setErrorState(){
+        _uiState.update {
+            ListUiState.IsError
         }
     }
 
